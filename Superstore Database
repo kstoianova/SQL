@@ -24,27 +24,22 @@ VALUES
     (13, 'Slow Cooker', 'Appliances', 49.95, 30, 4.7),
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
--- order the items by price
 
-SELECT item_name, price
+---order items by price
+SELECT *
 FROM superstore
 ORDER BY price;
 
--- show a statistic about the item prices
+--What is the highest price of any item?
+SELECT MAX(price)
+FROM superstore;
 
-SELECT SUM(price), category
+--What is the average price of items in the "Kitchen Supplies" category?
+SELECT AVG(price)
 FROM superstore
-GROUP BY category;
+WHERE category = 'Kitchen Supplies';
 
--- show a statistic about the price for items in the category of "Kitchen Supplies"
-
-SELECT MAX(price), MIN(price), category
+--What is the average price of items that have a rating of 4.5 or higher?
+SELECT AVG(price)
 FROM superstore
-WHERE category = "Kitchen Supplies";
-
--- what's our stock quantity for the highest rated item?
-
-SELECT stock_quantity, average_rating
-FROM superstore
-ORDER BY average_rating desc
-LIMIT 1;
+WHERE average_rating >= 4.5;
